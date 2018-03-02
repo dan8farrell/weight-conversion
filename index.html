@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Weight Converter</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css">
+    <style type="text/css">
+    body {
+        margin-top: 70px;
+        background: #333;
+        color: #fff;
+        font-color: white;
+    }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 offset-md-3">
+                <h1 class='display-4 text-center mb-3'>Weight Converter</h1>
+                <form action="">
+                    <div class="form-group">
+                        <select id='select' name="cars">
+                            <option id="grams" >Grams</option>
+                            <option id="kg">Kilograms</option>
+                            <option id="oz">Ounces</option>
+                            <option id="lbs">Lbs</option>
+                        </select>
+                        <input type="number" id="lbs-input" class="form-control form-control-lg" placeHolder="Enter Pounds...">
+                    </div>
+                </form>
+                <div id="output">
+                    <div class="card card-primary mb-2">
+                        <div class="card-block">
+                            <h4>Grams:</h4>
+                            <div id="grams-output"></div>
+                        </div>
+                    </div>
+                    <div class="card card-success mb-2">
+                        <div class="card-block">
+                            <h4>Kilograms:</h4>
+                            <div id="kg-output"></div>
+                        </div>
+                    </div>
+                    <div class="card card-danger mb-2">
+                        <div class="card-block">
+                            <h4>Ounces:</h4>
+                            <div id="oz-output"></div>
+                        </div>
+                    </div>
+                    <div class="card card-warning mb-2">
+                        <div class="card-block">
+                            <h4>lbs:</h4>
+                            <div id="lb-output"></div>
+                        </div>
+                    </div>
+                </div>
+                <script type="text/javascript">
+                document.getElementById('output').style.visibility = 'hidden';
+               // document.getElementById('select').addEventListener('select',metricPicker());
+                document.getElementById('lbs-input').addEventListener('input', function(e,input) { 
+               	metricPicker();
+                document.getElementById('output').style.visibility = 'visible';
+                let lbs = e.target.value;
+                document.getElementById('grams-output').innerHTML = lbs / 0.0022046;
+                document.getElementById('kg-output').innerHTML = lbs / 2.20046;
+                document.getElementById('oz-output').innerHTML = lbs * 16;
+                document.getElementById('lb-output').innerHTML = lbs;
+
+                })
+//input is the problem needs to be converted into number
+function metricPicker(){
+
+	var metric = document.getElementById('select').value;
+    document.getElementById("lbs-input").innerHTML = metric;
+
+	console.log(metric);
+}
+
+function metricPicker(input){
+var valObj ={
+	grams:[input,input *1000,input*35.274,input * 2.20462],
+	kilograms:[input/1000,input,input * 35.274,input / 2.20462],
+	ounces:[input*28.3495,input*28349.5,input,input/16],
+	lbs:[input / 0.0022046,input / 2.20046,input * 16,input]
+
+	}
+}
+console.log(metricPicker(23));
+metricPicker();
+                </script>
+</body>
+
+</html>
